@@ -2,4 +2,4 @@ Learning git
 .
 .
 .
-Chaning the data
+Changes in the data
