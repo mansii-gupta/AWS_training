@@ -3,3 +3,10 @@ Learning git
 .
 .
 Changes in the data
+
+
+git token ---
+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
+
+docker login token ---
+c9b427a8-d9e8-4473-8026-1f4f541bae54
