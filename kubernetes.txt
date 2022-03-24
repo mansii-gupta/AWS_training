@@ -1,0 +1,103 @@
+172.31.90.90 ip-172-31-90-90.ec2.internal
+172.31.90.228 ip-172-31-90-228.ec2.internal
+172.31.83.242 ip-172-31-83-242.ec2.internal
+172.31.91.1 ip-172-31-91-1.ec2.internal
+
+
+sudo kubeadm init \
+  --pod-network-cidr=192.168.0.0/16 \
+  --upload-certs \
+  --control-plane-endpoint=ip-172-31-90-90.ec2.internal
+
+
+
+-----------------------------------------------------
+
+To start using your cluster, you need to run the following as a regular ser:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed t:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of the control-plane node running the followng command on each as root:
+
+  kubeadm join ip-172-31-90-90.ec2.internal:6443 --token 5f3fbc.9e8tl1kj24a8m6c \
+        --discovery-token-ca-cert-hash sha256:7b2827bbe04702c00f4eab9a6ceea436a00ebf2ade5a7299634cf996268ceb2 \
+        --control-plane --certificate-key 6ba5b23a6f42ae2076b1b643ef8b6057c790ef24b40cf576ce155c4ce1ea683
+
+Please note that the certificate-key gives access to cluster sensitive dta, keep it secret!
+As a safeguard, uploaded-certs will be deleted in two hours; If necessar, you can use
+"kubeadm init phase upload-certs --upload-certs" to reload certs afterwad.
+
+Then you can join any number of worker nodes by running the following oneach as root:
+
+kubeadm join ip-172-31-90-90.ec2.internal:6443 --token 5f3fbc.9e8tl1kjz2a8m6c \
+        --discovery-token-ca-cert-hash sha256:7b2827bbe04702c00f4eab9a6ceea436a00ebf2ade5a7299634cf996268ceb2
+
+
+
+
+
+
+
+
+****************************************************************************************************************************
+
+
+172.31.80.139 ip-172-31-80-139.ec2.internal
+172.31.86.88 ip-172-31-86-88.ec2.internal
+172.31.93.108 ip-172-31-93-108.ec2.internal
+172.31.83.160 ip-172-31-83-160.ec2.internal
+
+
+
+
+
+
+sudo kubeadm init \
+  --upload-certs \
+  --control-plane-endpoint=ip-172-31-80-139.ec2.internal
+
+
+ mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of the control-plane node running the following command on each as root:
+
+  kubeadm join ip-172-31-80-139.ec2.internal:6443 --token krzfp3.iprtd1yx57ni9op3 \
+        --discovery-token-ca-cert-hash sha256:d2e2e667a46011512a35dc23877970c0a1c4a04b8561651a1827433585ccfb32 \
+        --control-plane --certificate-key f1b2bca80dd15a66605b1bc282fd8abb5d2f5cad45903583c4508e3bb627990f
+
+Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
+As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
+"kubeadm init phase upload-certs --upload-certs" to reload certs afterward.
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join ip-172-31-80-139.ec2.internal:6443 --token krzfp3.iprtd1yx57ni9op3 \
+        --discovery-token-ca-cert-hash sha256:d2e2e667a46011512a35dc23877970c0a1c4a04b8561651a1827433585ccfb32
+
+
+-----------------------------------------------------------------------
+
+docker hub token ------
+
+ae3c0f95-22ad-4dca-a34f-e5dd657fbf3b
+
